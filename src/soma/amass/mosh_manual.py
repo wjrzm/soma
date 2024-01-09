@@ -108,11 +108,25 @@ def mosh_manual(
 
         base_parallel_cfg = OmegaConf.load(osp.join(app_support_dir, 'conf/parallel_conf/moshpp_parallel.yaml'))
         moshpp_parallel_cfg = OmegaConf.merge(base_parallel_cfg, OmegaConf.create(parallel_cfg))
-        run_parallel_jobs(func=run_moshpp_once, jobs=mosh_jobs, parallel_cfg=moshpp_parallel_cfg)
-
+        # error handling for moshpp
+        while True:
+            flag = 1
+            try:
+                flag = run_parallel_jobs(func=run_moshpp_once, jobs=mosh_jobs, parallel_cfg=moshpp_parallel_cfg)
+            except:
+                flag = 1
+            if flag == 0: break
+        
     if 'render' in run_tasks:
         logger.info('Submitting render jobs.')
 
         base_parallel_cfg = OmegaConf.load(osp.join(app_support_dir, 'conf/parallel_conf/blender_parallel.yaml'))
         render_parallel_cfg = OmegaConf.merge(base_parallel_cfg, OmegaConf.create(parallel_cfg))
-        run_parallel_jobs(func=render_mosh_once, jobs=render_jobs, parallel_cfg=render_parallel_cfg)
+        # error handling for moshpp
+        while True:
+            flag = 1
+            try:
+                flag = run_parallel_jobs(func=render_mosh_once, jobs=render_jobs, parallel_cfg=render_parallel_cfg)
+            except:
+                flag = 1
+            if flag == 0: break

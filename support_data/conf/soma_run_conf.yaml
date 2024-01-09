@@ -3,7 +3,7 @@ mocap:
   ds_name: ${resolve_mocap_ds_name:${mocap.fname}}
   subject_name: ${resolve_mocap_subject:${mocap.fname}}
   basename: ${resolve_mocap_basename:${mocap.fname}}
-  unit: mm
+  unit: m
   rotate:
   start_fidx: 0
   end_fidx: -1

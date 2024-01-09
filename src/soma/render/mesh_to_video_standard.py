@@ -38,6 +38,7 @@ import bpy
 from body_visualizer.tools.render_tools import pngs2mp4
 from human_body_prior.tools.omni_tools import makepath
 from loguru import logger
+from memory_profiler import profile
 
 from soma.render.blender_tools import make_blender_silent
 from soma.render.blender_tools import prepare_render_cfg
@@ -122,14 +123,14 @@ def run_blender_once(cfg, body_mesh_fname, marker_mesh_fname, png_out_fname):
     bpy.ops.object.delete({"selected_objects": [obj for colec in bpy.data.collections for obj in colec.all_objects if
                                                 obj.name in ['Body', 'Object']]})
 
-    # # Delete last selected object from scene
+    # Delete last selected object from scene
     # if ps.show_body:
     #     body.select_set(True)
     # if ps.show_object:
     #     if not ps.show_body:
     #         bpy.ops.import_scene.obj(filepath=body_mesh_fname)
     #     marker_mesh.select_set(True)
-    #
+    
     # bpy.ops.object.delete()
 
     logger.success(f'created {png_out_fname}')

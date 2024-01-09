@@ -15,7 +15,7 @@ out:
 mesh:
   mosh_stageii_pkl_fnames: ???
   enable_dmpl: True
-  ds_rate: 10
+  ds_rate: 4
 
   colors:
     default: [ 0.345, 0.580, 0.713 ]
@@ -36,7 +36,7 @@ render:
   show_markers: False
   show_body: True
   render_only_one_image: False
-  video_fps: 15
+  video_fps: 30
 
   resolution:
     change_from_blend: False

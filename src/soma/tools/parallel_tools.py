@@ -78,3 +78,5 @@ def run_parallel_jobs(func, jobs: List[DictConfig], parallel_cfg: DictConfig = N
         for job in jobs:
             func(job)
             # print(job)
+
+    return 0

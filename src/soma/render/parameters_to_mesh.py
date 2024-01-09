@@ -193,8 +193,9 @@ def convert_to_mesh_once(cfg):
                         pass
 
                 marker_mesh = cur_marker_mesh if marker_mesh is None else marker_mesh.concatenate_mesh(cur_marker_mesh)
-
-        body_mesh.write_obj(makepath(cfg.dirs.mesh_out_dir, 'body_mesh', f'{fId:05d}.obj', isfile=True))
+        obj_out_path = makepath(cfg.dirs.mesh_out_dir, 'body_mesh', f'{fId:05d}.obj', isfile=True)
+        if osp.exists(obj_out_path): continue
+        body_mesh.write_obj(obj_out_path)
         if cfg.render.show_markers:
             cur_marker_mesh.write_ply(makepath(cfg.dirs.mesh_out_dir, 'marker_mesh', f'{fId:05d}.ply', isfile=True))
 

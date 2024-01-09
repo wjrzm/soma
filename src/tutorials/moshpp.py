@@ -6,7 +6,7 @@ from loguru import logger
 
 from src.soma.amass.mosh_manual import mosh_manual
 
-soma_work_base_dir = '/mnt/d/Code/SOMA'
+soma_work_base_dir = '/mnt/d/Dataset/Mocap'
 support_base_dir = osp.join(soma_work_base_dir, 'support_files')
 
 mocap_base_dir = osp.join(support_base_dir, 'evaluation_mocaps/original')
@@ -40,10 +40,10 @@ for ds_name in target_ds_names:
         parallel_cfg={
             'pool_size': 10,
             'max_num_jobs': 4,
-            'randomly_run_jobs': True,
+            'randomly_run_jobs': False,
         },
         run_tasks=[
-            'mosh',
+            # 'mosh',
             'render',
         ],
         # fast_dev_run=True,
