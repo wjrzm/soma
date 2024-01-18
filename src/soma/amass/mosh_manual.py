@@ -68,7 +68,7 @@ def mosh_manual(
     if fast_dev_run: mocap_fnames = mocap_fnames[:3]
 
     for mocap_fname in mocap_fnames:
-
+        print(mocap_fname)
         if fname_filter:
             if not sum([i in mocap_fname for i in fname_filter]): continue
         mocap_key = '_'.join(mocap_fname.split('/')[-3:-1])
@@ -88,7 +88,10 @@ def mosh_manual(
 
         if only_stagei and osp.exists(cur_mosh_cfg.dirs.stagei_fname): continue
 
+        print(mocap_key)
+        print(exclude_mosh_job_keys)
         if mocap_key not in exclude_mosh_job_keys and not osp.exists(cur_mosh_cfg.dirs.stageii_fname):
+            
             mosh_jobs.append(mosh_job.copy())
             if not osp.exists(cur_mosh_cfg.dirs.stagei_fname) and not determine_shape_for_each_seq:
                 exclude_mosh_job_keys.append(mocap_key)
@@ -112,8 +115,11 @@ def mosh_manual(
         while True:
             flag = 1
             try:
+                print('===================')
+                print(mosh_jobs)
                 flag = run_parallel_jobs(func=run_moshpp_once, jobs=mosh_jobs, parallel_cfg=moshpp_parallel_cfg)
-            except:
+            except Exception as e:
+                print(e)
                 flag = 1
             if flag == 0: break
         
@@ -127,6 +133,7 @@ def mosh_manual(
             flag = 1
             try:
                 flag = run_parallel_jobs(func=render_mosh_once, jobs=render_jobs, parallel_cfg=render_parallel_cfg)
-            except:
+            except Exception as e:
+                print(e)
                 flag = 1
             if flag == 0: break

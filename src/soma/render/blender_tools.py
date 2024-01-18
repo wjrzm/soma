@@ -31,6 +31,7 @@
 import os
 import sys
 from os import path as osp
+import multiprocessing
 
 import bpy
 from human_body_prior.tools.omni_tools import get_support_data_dir
@@ -42,10 +43,15 @@ from soma.tools.parallel_tools import run_parallel_jobs
 
 
 def render_mosh_once(render_cfg):
-    from soma.render.parameters_to_mesh import convert_to_mesh_once
-    from soma.render.mesh_to_video_standard import create_video_from_mesh_dir
-    convert_to_mesh_once(render_cfg)
-    create_video_from_mesh_dir(render_cfg)
+    try:
+        from soma.render.parameters_to_mesh import convert_to_mesh_once
+        from soma.render.mesh_to_video_standard import create_video_from_mesh_dir
+        convert_to_mesh_once(render_cfg)
+        create_video_from_mesh_dir(render_cfg)
+    except Exception as e:
+        logger.error(f'Error in running mosh++: {e}')
+        # raise e
+        # multiprocessing.current_process().terminate()
 
 
 def prepare_render_cfg(*args, **kwargs) -> DictConfig:

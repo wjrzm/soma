@@ -39,7 +39,7 @@ for ds_name in target_ds_names:
         },
         parallel_cfg={
             'pool_size': 10,
-            'max_num_jobs': 4,
+            'max_num_jobs': 2, 
             'randomly_run_jobs': False,
         },
         run_tasks=[

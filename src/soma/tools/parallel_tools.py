@@ -35,6 +35,9 @@ from typing import Union
 from loguru import logger
 from omegaconf import DictConfig
 from omegaconf import OmegaConf
+from multiprocessing import Pool
+import multiprocessing
+from concurrent.futures import ProcessPoolExecutor,ThreadPoolExecutor
 
 
 def run_parallel_jobs(func, jobs: List[DictConfig], parallel_cfg: DictConfig = None,
@@ -79,4 +82,25 @@ def run_parallel_jobs(func, jobs: List[DictConfig], parallel_cfg: DictConfig = N
             func(job)
             # print(job)
 
+        # print(jobs)
+
+        # pool = Pool(len(jobs))
+        # pool.map(func, jobs)
+        # pool.close()
+        # pool.join()
+        
+        # processes = []
+        # for job in jobs:
+        #     process = multiprocessing.Process(target=func, args=(job,))
+        #     process.start()
+        #     processes.append(process)
+
+        # for process in processes:
+        #     process.join()
+
+
+        # pool = ProcessPoolExecutor(len(jobs))
+        # pool.map(func, jobs)
+        # pool.shutdown()
+    
     return 0
