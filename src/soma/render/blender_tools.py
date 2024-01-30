@@ -54,8 +54,7 @@ def render_mosh_once(render_cfg):
         logger.error(f'Error in running mosh++: {e}')
         # raise e
         # multiprocessing.current_process().terminate()
-    
-    return 0
+
 
 
 def prepare_render_cfg(*args, **kwargs) -> DictConfig:

@@ -136,4 +136,6 @@ def mosh_manual(
             except Exception as e:
                 print(e)
                 flag = 1
-            if flag == 0: break
+            if flag == 0:
+                logger.info('All render jobs are done.')
+                break

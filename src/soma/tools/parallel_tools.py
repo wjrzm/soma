@@ -79,7 +79,10 @@ def run_parallel_jobs(func, jobs: List[DictConfig], parallel_cfg: DictConfig = N
         return
     else:
         for job in jobs:
-            func(job)
+            try:
+                func(job)
+            except Exception as e:
+                logger.error(f'Error in running job: {e}')
             # print(job)
 
         # print(jobs)
