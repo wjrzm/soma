@@ -94,3 +94,10 @@ while at [Max-Planck Institute for Intelligent Systems, Tübingen, Germany](http
 If you have any questions you can contact us at [soma@tuebingen.mpg.de](mailto:amass@tuebingen.mpg.de).
 
 For commercial licensing, contact [ps-licensing@tue.mpg.de](mailto:ps-licensing@tue.mpg.de)
+
+## Docker deploy
+
+```bash
+docker run --name moshpp_new -itd -v /mnt/z:/Dataset moshpp_image bash
+docker exec -it moshpp_new bash
+```
